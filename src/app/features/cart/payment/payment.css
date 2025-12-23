@@ -1,0 +1,108 @@
+.payment-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+  background-color: #f5f5f5;
+}
+
+.payment-box {
+  display: flex;
+  gap: 3rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.payment-left {
+  flex: 2;
+  min-width: 300px;
+}
+
+.payment-right {
+  flex: 1;
+  min-width: 280px;
+  border-left: 1px solid #eee;
+  padding-left: 2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.payment-option.selected {
+  border-color: #ff4081;
+}
+
+.payment-option input[type="radio"] {
+  transform: scale(1.2);
+}
+
+.payment-option label {
+  font-size: 1rem;
+  color: #333;
+}
+
+.price-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.price-list li {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+.price-list .total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.btn-primary {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e91e63;
+}
+
+@media (max-width: 768px) {
+  .payment-box {
+    flex-direction: column;
+  }
+
+  .payment-right {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+}

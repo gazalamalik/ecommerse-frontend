@@ -1,0 +1,235 @@
+<div class="profile-page">
+  <!-- Header with Logo -->
+  <div class="profile-header">
+    <div class="logo-container">
+      <img src="images/LOGO.png" alt="Her Glamora" class="header-logo">
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="profile-content">
+    <div class="container">
+      <div class="row g-4">  
+        <!-- Left Sidebar -->
+        <div class="col-lg-4">
+          <div class="sidebar-card">
+            <!-- User Info Header -->
+            <div class="user-info-header">
+              <i class="fa-solid fa-circle-info info-icon"></i>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="menu-list">
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 [class.active]="activeMenu === 'profile'"
+                 (click)="navigateTo('profile')">
+                <span>Profile Details</span>
+              </a>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('orders')">
+                <span>My Orders</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+
+              <div class="menu-section-title">Addresses</div>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('addresses')">
+                <span>Addresses</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('payment-methods')">
+                <span>Payment Methods</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('wishlist')">
+                <span>Wishlist</span>
+              </a>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('notifications')">
+                <span>Notifications</span>
+              </a>
+
+              <a href="javascript:void(0)" 
+                 class="menu-item"
+                 (click)="navigateTo('changePassword')">
+                <span>Change Password</span>
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="logout-container">
+              <button class="btn-logout" (click)="logout()">
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Content Area -->
+        <div class="col-lg-8">
+          <!--Profile Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'profile'">
+            <h2 class="page-title">My Profile</h2>
+            <!-- Avatar Section -->
+            <div class="avatar-section">
+              <div class="avatar-circle">
+                {{getInitial()}}
+              </div>
+              <button class="btn-change-avatar" (click)="changeAvatar()">
+                Change
+              </button>
+            </div>
+            <!-- Personal Information Form -->
+            <div class="form-section">
+              <h3 class="section-title">Personal information</h3>
+              <form>
+                <!-- Full Name -->
+                <div class="form-group">
+                  <label class="form-label">Full Name:</label>
+                  <div class="input-with-action">
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      [(ngModel)]="userProfile.userName"
+                      name="userName"
+                      [disabled]="!isEditing">
+                    <button 
+                      type="button" 
+                      class="btn-edit" 
+                      (click)="editField('userName')">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="form-label">Email Address:</label>
+                  <input 
+                    type="email" 
+                    class="form-control" 
+                    [(ngModel)]="userProfile.email"
+                    name="email"
+                    [disabled]="!isEditing">
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group">
+                  <label class="form-label">Mobile Number:</label>
+                  <input 
+                    type="tel" 
+                    class="form-control" 
+                    [(ngModel)]="userProfile.mobile"
+                    name="mobile"
+                    [disabled]="!isEditing">
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                  <label class="form-label">Gender</label>
+                  <div class="input-with-action">
+                    <select 
+                      class="form-control" 
+                      [(ngModel)]="userProfile.gender"
+                      name="gender"
+                      [disabled]="!isEditing">
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <button 
+                      type="button" 
+                      class="btn-edit" 
+                      (click)="editField('gender')">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                  <label class="form-label">Date of Borth:</label>
+                  <div class="input-with-action">
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      [(ngModel)]="userProfile.dateOfBirth"
+                      name="dateOfBirth"
+                      placeholder="DD/MM/YYYY"
+                      [disabled]="!isEditing">
+                    <button 
+                      type="button" 
+                      class="btn-edit" 
+                      (click)="editField('dateOfBirth')">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions" *ngIf="isEditing">
+                  <button 
+                    type="button" 
+                    class="btn btn-save" 
+                    (click)="saveChanges()">
+                    Save Changes
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-cancel" 
+                    (click)="cancel()">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!--Order Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'orders'">
+            <h3 class="page-title">My Orders</h3>
+            <!-- Order summary content goes here -->
+          </div>
+          <!--Order Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'addresses'">
+            <h3 class="page-title">My Addresses</h3>
+            <!-- Address summary content goes here -->
+          </div>
+          <!--Payment Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'payment-methods'">
+            <h3 class="page-title">Payment Methods</h3>
+            <!-- Payment methods summary content goes here -->
+          </div>
+          <!--Wishlist Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'wishlist'">
+            <h3 class="page-title">My Wishlist</h3>
+            <!-- Wishlist summary content goes here -->
+          </div>
+          <!--Notifications Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'notifications'">
+            <h3 class="page-title">My Notifications</h3>
+            <!-- Notifications summary content goes here -->
+          </div>
+          <!--ChangePassword Details Section -->
+          <div class="content-card" *ngIf="activeMenu === 'changePassword'">
+            <h3 class="page-title">Change Password</h3>
+            <!-- Change password form goes here -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

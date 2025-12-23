@@ -1,0 +1,158 @@
+<div class="auth-container container-fluid">
+  <div class="row g-0 min-vh-100">
+    
+    <!-- Left Side - Image -->
+    <div class="col-md-6 image-section d-none d-md-block">
+      <div class="image-overlay"></div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="col-md-6 form-section d-flex align-items-center justify-content-center py-5">
+      <div class="form-wrapper">
+        <div class="form-container">
+          
+          <!-- Logo -->
+          <div class="logo-section">
+            <img src="images/LOGO.png" alt="Her Glamora" class="logo" />
+          </div>
+
+          <!-- Login Form -->
+          <div *ngIf="isLoginMode" class="auth-form fade-in">
+            <h2 class="welcome-title">Welcome Back!</h2>
+            <p class="welcome-subtitle">Log in to Your Account</p>
+
+            <form (ngSubmit)="onLoginClick()">
+              <div class="mb-3">
+                <input type="email" class="form-control custom-input" placeholder="Email Address"
+                  [(ngModel)]="loginData.email" name="email" required />
+              </div>
+
+              <div class="mb-3">
+                <input type="password" class="form-control custom-input" placeholder="Password"
+                  [(ngModel)]="loginData.password" name="password" required />
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe"
+                    [(ngModel)]="loginData.rememberMe" name="rememberMe" />
+                  <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <a href="javascript:void(0)" class="forgot-link" (click)="onForgotPassword()">Forgot Password?</a>
+              </div>
+              <!-- Login Button -->
+              <button type="submit"
+                      class="btn btn-login w-100 mb-4"
+                      [disabled]="!loginData.email || !loginData.password || !loginData.rememberMe"
+                      [ngClass]="{ 'btn-disabled': !loginData.email || !loginData.password || !loginData.rememberMe }"
+                      >
+                Login
+              </button>
+
+            </form>
+
+            <!-- Social Login -->
+            <div class="social-buttons">
+              <button class="btn btn-social btn-google" (click)="onGoogleAuth()">
+                <i class="bi bi-google"></i> Continue with Google
+              </button>
+              <button class="btn btn-social btn-facebook" (click)="onFacebookAuth()">
+                <i class="bi bi-facebook"></i> Continue with Facebook
+              </button>
+            </div>
+
+            <div class="switch-mode">
+                Don't have an account?
+              <a href="javascript:void(0)" (click)="toggleMode()">Sign Up</a>
+            </div>
+          </div>
+
+          <!-- Signup Form -->
+          <div *ngIf="!isLoginMode" class="auth-form fade-in">
+            <h2 class="welcome-title">Create Account</h2>
+            <p class="welcome-subtitle">Sign up to Get Started</p>
+
+            <form (ngSubmit)="onRegisterClick()">
+              <div class="mb-3">
+                <input type="text" class="form-control custom-input" placeholder="User Name"
+                  [(ngModel)]="signupData.UserName" name="UserName" required />
+              </div>
+
+              <div class="mb-3">
+                <input type="email" class="form-control custom-input" placeholder="Email Address"
+                  [(ngModel)]="signupData.email" name="email" required />
+              </div>
+
+              <!-- <div class="mb-3">
+                <input type="text" class="form-control custom-input" placeholder="Mobile Number"
+                  [(ngModel)]="signupData.mobile" name="mobile" required />
+              </div> -->
+              <div class="mb-3">
+                <input type="tel"
+                class="form-control custom-input"
+                placeholder="Mobile Number"
+                [(ngModel)]="signupData.mobile"
+                name="mobile"
+                required />
+              </div>
+           
+              <div class="mb-3">
+                <select class="form-control custom-input"
+                        [(ngModel)]="signupData.gender"
+                        name="gender"
+                        required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <input type="date" class="form-control custom-input" placeholder="Date of Birth"
+                  [(ngModel)]="signupData.dateOfBirth" name="dateOfBirth" required />
+              </div>
+
+
+              <div class="mb-3">
+                <input type="password" class="form-control custom-input" placeholder="Password"
+                  [(ngModel)]="signupData.password" name="password" required />
+              </div>
+
+              <div class="mb-4">
+                <input type="password" class="form-control custom-input" placeholder="Confirm Password"
+                  [(ngModel)]="signupData.confirmPassword" name="confirmPassword" required />
+              </div>
+
+              <!-- Sign Up Button -->
+              <button type="submit"
+                      class="btn btn-login w-100 mb-4"
+                      [disabled]="!signupData.UserName || !signupData.email || !signupData.password || !signupData.confirmPassword || !signupData.mobile || !signupData.gender || !signupData.dateOfBirth"
+                      [ngClass]="{ 'btn-disabled': !signupData.UserName || !signupData.email || !signupData.password || !signupData.confirmPassword || !signupData.mobile || !signupData.gender || !signupData.dateOfBirth }"
+                    >
+                Sign Up
+              </button>
+
+            </form>
+
+            <!-- Social Login -->
+            <div class="social-buttons">
+              <button class="btn btn-social btn-google" (click)="onGoogleAuth()">
+                <i class="bi bi-google"></i> Continue with Google
+              </button>
+              <button class="btn btn-social btn-facebook" (click)="onFacebookAuth()">
+                <i class="bi bi-facebook"></i> Continue with Facebook
+              </button>
+            </div>
+
+            <div class="switch-mode">
+              Already have an account?
+              <a href="javascript:void(0)" (click)="toggleMode()">Log In</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

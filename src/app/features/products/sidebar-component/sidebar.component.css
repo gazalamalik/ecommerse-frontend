@@ -1,0 +1,6 @@
+.sidebar-wrapper {
+  position: sticky;
+  top: 80px; /* adjust based on your navbar height */
+  align-self: flex-start;
+  height: fit-content;
+}

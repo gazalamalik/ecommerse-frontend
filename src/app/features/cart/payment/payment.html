@@ -1,0 +1,41 @@
+<div class="payment-wrapper">
+  <div class="payment-box">
+    <!-- Left: Payment Options -->
+    <div class="payment-left">
+      <h2 class="section-title">Choose Payment Mode</h2>
+
+      <div class="payment-option" [class.selected]="selectedMethod === 'cod'" (click)="selectMethod('cod')">
+        <input type="radio" name="payment" [checked]="selectedMethod === 'cod'" />
+        <label>Cash On Delivery (Cash/UPI)</label>
+      </div>
+
+      <div class="payment-option" [class.selected]="selectedMethod === 'upi'" (click)="selectMethod('upi')">
+        <input type="radio" name="payment" [checked]="selectedMethod === 'upi'" />
+        <label>UPI (Pay via any App)</label>
+      </div>
+
+      <div class="payment-option" [class.selected]="selectedMethod === 'card'" (click)="selectMethod('card')">
+        <input type="radio" name="payment" [checked]="selectedMethod === 'card'" />
+        <label>Credit/Debit Card</label>
+      </div>
+
+      <div class="payment-option" [class.selected]="selectedMethod === 'netbanking'" (click)="selectMethod('netbanking')">
+        <input type="radio" name="payment" [checked]="selectedMethod === 'netbanking'" />
+        <label>Net Banking</label>
+      </div>
+    </div>
+
+    <!-- Right: Price Summary -->
+    <div class="payment-right">
+      <h3 class="section-title">Price Details (1 item)</h3>
+      <ul class="price-list">
+        <li>Total MRP: ₹1,902</li>
+        <li>Discount on MRP: -₹931</li>
+        <li>Platform Fee: ₹23 <a class="info-link">Know More</a></li>
+        <li class="total">Total Amount: ₹994</li>
+      </ul>
+
+      <button class="btn-primary" (click)="placeOrder()">PLACE ORDER</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+/* Sidebar */
+.filter-sidebar {
+  border-right: 1px solid #eee;
+}
+
+/* Product Card */
+.product-card {
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  border-radius: 8px;
+}
+
+/* Card hover: lift + shadow */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Wishlist Icon & Buttons Hover */
+.product-card i.bi,
+.product-card .btn {
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  cursor: pointer;
+}
+
+.product-card i.bi:hover,
+.product-card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Quantity Controls spacing */
+.product-card .d-flex.align-items-center.gap-2 {
+  gap: 0.5rem; /* spacing between +, - buttons */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.btn-outline-primary {
+  border: 1px solid #ff4081;
+  color: #ff4081;
+  background-color: transparent;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ff4081;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

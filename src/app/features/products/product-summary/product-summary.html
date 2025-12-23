@@ -1,0 +1,111 @@
+<div class="product-summary-container" *ngIf="product">
+  <!-- Left Panel - Image Gallery -->
+  <div class="image-gallery">
+    <!-- Thumbnail Images -->
+    <div class="thumbnail-list">
+      <div 
+        *ngFor="let img of getImages()" 
+        class="thumbnail"
+        [class.active]="selectedImage === img"
+        (click)="selectImage(img)">
+        <img [src]="img" [alt]="product.name" />
+      </div>
+    </div>
+
+    <!-- Main Image -->
+    <div class="main-image">
+      <img [src]="selectedImage" [alt]="product.name" />
+      <i 
+        class="wishlist-icon bi"
+        [ngClass]="isInWishlist(product.id) ? 'bi-heart-fill' : 'bi-heart'"
+        (click)="handleWishlist(product)">
+      </i>
+    </div>
+  </div>
+
+  <!-- Right Panel - Product Details -->
+  <div class="product-details">
+    <!-- Brand & Product Name -->
+    <div class="product-header">
+      <h1 class="brand-name">{{ product.brand || 'Brand Name' }}</h1>
+      <h2 class="product-name">{{ product.name }}</h2>
+      <div class="rating" *ngIf="product.rating">
+        <span class="stars">★ {{ product.rating }}</span>
+        <span class="reviews">({{ product.reviewCount || 0 }} Reviews)</span>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Pricing Section -->
+    <div class="pricing-section">
+      <span class="current-price">₹{{ product.price }}</span>
+      <span class="original-price" *ngIf="product.originalPrice">₹{{ product.originalPrice }}</span>
+      <span class="discount" *ngIf="calculateDiscount() > 0">({{ calculateDiscount() }}% OFF)</span>
+    </div>
+    <p class="tax-info">inclusive of all taxes</p>
+
+    <hr />
+
+    <!-- Quantity Selection -->
+    <div class="quantity-section">
+      <h3>QUANTITY</h3>
+      <div class="quantity-controls">
+        <button class="qty-btn" (click)="decrementQuantity()">-</button>
+        <span class="quantity">{{ quantity }}</span>
+        <button class="qty-btn" (click)="incrementQuantity()">+</button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-add-bag" (click)="addToBag(product)">
+        <i class="bi bi-bag"></i> ADD TO BAG
+      </button>
+      <button class="btn btn-wishlist" (click)="handleWishlist(product)">
+        <i class="bi" [ngClass]="isInWishlist(product.id) ? 'bi-heart-fill' : 'bi-heart'"></i>
+        WISHLIST
+      </button>
+    </div>
+
+    <hr />
+
+    <!-- Delivery Options -->
+    <div class="delivery-section">
+      <h3>DELIVERY OPTIONS</h3>
+      <div class="pincode-check">
+        <input type="text" placeholder="Enter Pincode" />
+        <button class="btn-check">CHECK</button>
+      </div>
+      <p class="delivery-info">
+        <i class="bi bi-truck"></i> Get it by <strong>3-5 days</strong>
+      </p>
+    </div>
+
+    <hr />
+
+    <!-- Product Details -->
+    <div class="product-info">
+      <h3>PRODUCT DETAILS</h3>
+      <p>{{ product.description || 'Product description goes here...' }}</p>
+      
+       <div class="specifications" >  <!-- *ngIf="product.specifications"> -->
+        <h4>Specifications:</h4>
+        <ul>
+          <!-- <li *ngFor="let spec of product.specifications">{{ spec }}</li> -->
+           <h5>specification tab </h5>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Return Policy -->
+    <div class="return-policy">
+      <p><i class="bi bi-arrow-return-left"></i> <strong>14 days</strong> return available</p>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-state" *ngIf="!product">
+  <p>Loading product details...</p>
+</div>

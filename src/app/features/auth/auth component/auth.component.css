@@ -1,0 +1,155 @@
+.auth-container {
+  background: #f5f5f5;
+}
+
+/* Left Side - Image Section */
+.image-section {
+  background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Right Side - Form Section */
+.form-section {
+  background: white;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* logo img  */
+.logo-section {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+
+/* Form Styles */
+.auth-form {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .image-section {
+    display: none;
+  }
+
+  .form-wrapper {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+}
+
+.welcome-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #010000;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1rem;
+  color: #010000;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.custom-input {
+  padding: 0.875rem 1rem;
+  border: 2px solid #ccc; /* Light gray border */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #ece1e1;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-input:hover {
+  border-color: #ff4081; /* Pink on hover */
+  box-shadow: 0 0 0 0.15rem rgba(255, 64, 129, 0.2);
+}
+
+.custom-input:focus {
+  border-color: #ff4081;
+  box-shadow: 0 0 0 0.2rem rgba(255, 64, 129, 0.3);
+  outline: none;
+}
+
+.custom-input::placeholder {
+  color: #0e0c0d;
+}
+/* Base button style */
+.btn-login {
+  background-color: #c97882; /* Normal pinkish tone */
+  color: rgb(255, 255, 255);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Darker when enabled (hover or active) */
+.btn-login:hover:enabled,
+.btn-login:active:enabled {
+  background-color: #ff4081; /* Slightly darker pink */
+}
+
+/* Disabled state */
+.btn-disabled {
+  background-color: #e8b0b8; /* Light pinkish tone */
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.switch-mode{
+    text-align: center;
+}
+.snackbar-success {
+  background-color: #c97882;
+  color: black;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}

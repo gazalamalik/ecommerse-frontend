@@ -1,0 +1,239 @@
+{
+  "necklaces": [
+    {
+      "id": 1,
+      "name": "Diamond Necklace",
+      "category": "necklaces",
+      "brand": "Tanishq",
+      "color": "Gold",
+      "discount": 30,
+      "img": "images/necklace1.jpg",
+      "price": 2500
+    },
+    {
+      "id": 2,
+      "name": "Pearl Necklace",
+      "category": "necklaces",
+      "brand": "Zaveri",
+      "color": "White",
+      "discount": 20,
+      "img": "images/necklace2.jpg",
+      "price": 1800
+    },
+    {
+      "id": 3,
+      "name": "Pearl Necklace",
+      "category": "necklaces",
+      "brand": "Zaveri",
+      "color": "White",
+      "discount": 20,
+      "img": "images/necklace2.jpg",
+      "price": 1800
+    },
+    {
+      "id": 4,
+      "name": "Pearl Necklace",
+      "category": "necklaces",
+      "brand": "Zaveri",
+      "color": "White",
+      "discount": 20,
+      "img": "images/necklace2.jpg",
+      "price": 1800
+    },
+    {
+      "id": 5,
+      "name": "Pearl Necklace",
+      "category": "necklaces",
+      "brand": "Zaveri",
+      "color": "White",
+      "discount": 20,
+      "img": "images/necklace2.jpg",
+      "price": 1800
+    },
+    {
+      "id": 6,
+      "name": "Pearl Necklace",
+      "category": "necklaces",
+      "brand": "Zaveri",
+      "color": "White",
+      "discount": 20,
+      "img": "images/necklace2.jpg",
+      "price": 1800
+    }
+  ],
+  "earrings": [
+    {
+      "id": 1,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 2,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 3,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 4,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 5,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 6,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 7,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 8,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 9,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 10,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 11,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 12,
+      "name": "Gold Earrings",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    }
+  ],
+   "rings": [
+    {
+      "id": 1,
+      "name": "Ring 1",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 2,
+      "name": "Ring 1",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 3,
+      "name": "Ring 2",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+  },
+  {
+      "id": 4,
+      "name": "Ring 3",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    },
+    {
+      "id": 5,
+      "name": "Ring 4",
+      "category": "earrings",
+      "brand": "Zaveri",
+      "color": "Gold",
+      "discount": 20,
+      "img": "images/earrings1.jpg",
+      "price": 1200
+    }
+
+  ]
+}

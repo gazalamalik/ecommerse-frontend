@@ -1,0 +1,48 @@
+<div class="checkout-wrapper">
+  <!-- Left: Address Selection -->
+  <div class="checkout-left">
+    <h2 class="section-title">Select Delivery Address</h2>
+
+    <div class="address-card" [class.selected]="selectedAddressId === 1">
+      <label class="address-radio">
+        <input type="radio" name="address" [checked]="selectedAddressId === 1" (change)="selectAddress(1)" />
+        <div class="address-content">
+          <div class="address-header">
+            <strong>Gazala Malik</strong>
+            <span class="tag">HOME</span>
+          </div>
+          <p>C2101, host grid cghs, C210, Sector 14 near sector 14 Huda market</p>
+          <p>Gurgaon, Haryana - 122001</p>
+          <p>Mobile: 8755745898</p>
+          <p class="note">• Pay on Delivery not available</p>
+          <div class="address-actions">
+            <button class="btn-outline">EDIT</button>
+            <button class="btn-outline">REMOVE</button>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <div class="add-new">
+      <a (click)="openAddAddressForm()">+ Add New Address</a>
+    </div>
+  </div>
+
+  <!-- Right: Delivery & Price Summary -->
+  <div class="checkout-right">
+    <h3 class="section-title">Delivery Estimates</h3>
+    <div class="summary-card">
+      <p>Estimated delivery by <strong>27 Oct 2025</strong></p>
+
+      <h3 class="section-title">Price Details</h3>
+      <ul class="price-list">
+        <li>Total MRP: ₹399</li>
+        <li>Discount on MRP: -₹20</li>
+        <li>Platform Fee: ₹23 <a class="info-link">Know More</a></li>
+        <li class="total">Total Amount: ₹402</li>
+      </ul>
+
+      <button class="btn-primary" (click)="onContinue()">CONTINUE</button>
+    </div>
+  </div>
+</div>

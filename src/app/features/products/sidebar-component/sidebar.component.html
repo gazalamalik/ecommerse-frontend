@@ -1,0 +1,55 @@
+<div class="filter-sidebar p-3 shadow-sm bg-white rounded sidebar-wrapper">
+     
+  <!-- Category Filter -->
+  <div class="filter-group mb-4">
+    <h6 class="filter-heading">Category</h6>
+    <div *ngFor="let cat of categories" class="form-check">
+      <input class="form-check-input" type="checkbox" [value]="cat" [checked]="isSelected(cat)"
+      (change)="toggleCategory(cat)" [id]="'cat-'+cat">
+      <label class="form-check-label" [for]="'cat-'+cat">{{ cat }}</label>
+    </div>
+  </div>
+
+  <!-- Brand Filter -->
+  <div class="filter-group mb-4">
+    <h6 class="filter-heading">Brand</h6>
+    <div *ngFor="let brand of brands" class="form-check">
+      <input class="form-check-input" type="checkbox" [value]="brand" [checked]="isSelected(brand)"
+      (change)="toggleBrand(brand)" [id]="'brand-'+brand">
+      <label class="form-check-label" [for]="'brand-'+brand">{{ brand }}</label>
+    </div>
+  </div>
+
+  <!-- Price Filter -->
+  <div class="filter-group mb-4">
+    <h6 class="filter-heading">Price</h6>
+   <input
+    type="range"
+    [min]="priceRange.min"
+    [max]="priceRange.max"
+    [(ngModel)]="selectedPrice"
+    (change)="priceChange.emit(selectedPrice)"
+    class="form-range"
+  />
+  <p class="mt-2">Up to ₹{{ selectedPrice }}</p>
+  </div>
+
+  <!-- Color Filter -->
+  <div class="filter-group mb-4">
+    <h6 class="filter-heading">Color</h6>
+    <div *ngFor="let color of colors" class="form-check">
+      <input class="form-check-input" type="checkbox" [value]="color" [checked]="isSelected(color)"
+      (change)="toggleColor(color)" [id]="'color-'+color">
+      <label class="form-check-label" [for]="'color-'+color">{{ color }}</label>
+    </div>
+  </div>
+
+  <!-- Discount Filter -->
+  <div class="filter-group mb-4">
+    <h6 class="filter-heading">Discount</h6>
+    <div *ngFor="let discount of discounts" class="form-check">
+      <input class="form-check-input" type="checkbox" [value]="discount" (change)="toggleDiscount(discount)" [id]="'discount-'+discount">
+      <label class="form-check-label" [for]="'discount-'+discount">{{ discount }}% & above</label>
+    </div>
+  </div>
+</div>

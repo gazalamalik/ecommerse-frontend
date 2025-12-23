@@ -1,0 +1,283 @@
+<!-- Cart Details Page -->
+<div class="cart-page">
+  <!-- Progress Steps -->
+  <div class="progress-bar-container">
+    <div class="progress-steps">
+        <div class="step" [class.active]="currentStep === 'bag'">
+            <div class="step-number">1</div>
+            <span>BAG</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step" [class.active]="currentStep === 'address'">
+            <div class="step-number">2</div>
+            <span>ADDRESS</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step" [class.active]="currentStep === 'payment'">
+            <div class="step-number">3</div>
+            <span>PAYMENT</span>
+        </div>
+    </div> 
+  </div>
+
+  <!-- Main Content -->
+  <div class="cart-content" *ngIf="cartItems.length > 0">
+    <ng-container *ngIf="currentStep === 'bag'">
+        <div class="cart-items-panel">
+        <!-- Delivery Section -->
+        <div class="delivery-section">
+            <h3>Check delivery time & services</h3>
+            <div class="pincode-input-group">
+            <input 
+                type="text" 
+                [(ngModel)]="pinCode"
+                placeholder="Enter PIN code"
+                maxlength="6"
+                class="pincode-input"
+            />
+            <button class="btn-check-pincode" (click)="checkPinCode()">CHECK</button>
+            </div>
+            <p class="delivery-info" *ngIf="estimatedDelivery">
+            <i class="bi bi-truck"></i> Estimated delivery: <strong>{{ estimatedDelivery }}</strong>
+            </p>
+        </div>
+
+        <!-- Available Offers -->
+        <div class="offers-section">
+            <div class="offers-header">
+            <i class="bi bi-gift"></i>
+            <span>Available Offers</span>
+            </div>
+            <div class="offer-item">
+            <i class="bi bi-tag-fill"></i>
+            <p>10% Instant Discount on IDFC FIRST SWYP Credit Card on a min spend of ₹850</p>
+            </div>
+            <button class="show-more-btn">Show More <i class="bi bi-chevron-down"></i></button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="cart-items-list">
+            <div class="cart-items-header">
+            <input type="checkbox" checked />
+            <span>{{ cartItems.length }}/{{ cartItems.length }} ITEMS SELECTED</span>
+            <div class="actions">
+                <button class="action-btn">REMOVE</button>
+                <button class="action-btn">MOVE TO WISHLIST</button>
+            </div>
+            </div>
+
+            <!-- Individual Cart Item -->
+            <div class="cart-item" *ngFor="let item of cartItems">
+            <div class="item-checkbox">
+                <input type="checkbox" checked />
+            </div>
+            
+            <div class="item-image">
+                <img [src]="item.imageUrl" [alt]="item.name" />
+            </div>
+
+            <div class="item-details">
+                <div class="item-info">
+                <h4 class="item-brand">{{ item.brand || 'Brand' }}</h4>
+                <p class="item-name">{{ item.name }}</p>
+                
+                <div class="item-variants">
+                    <div class="variant">
+                    <span class="variant-label">Qty:</span>
+                    <div class="quantity-selector">
+                        <button (click)="updateQuantity(item, -1)">-</button>
+                        <span>{{ item.quantity }}</span>
+                        <button (click)="updateQuantity(item, 1)">+</button>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="item-pricing">
+                    <span class="current-price">₹{{ item.price * item.quantity }}</span>
+                    <span class="original-price" *ngIf="item.originalPrice">
+                    ₹{{ item.originalPrice * item.quantity }}
+                    </span>
+                    <span class="discount" *ngIf="item.originalPrice">
+                    {{ ((item.originalPrice - item.price) / item.originalPrice * 100).toFixed(0) }}% OFF
+                    </span>
+                </div>
+
+                <div class="item-return-info">
+                    <i class="bi bi-arrow-return-left"></i>
+                    <span><strong>14 days</strong> return available</span>
+                </div>
+                </div>
+
+                <button class="btn-remove" (click)="removeItem(item)">
+                <i class="bi bi-x"></i>
+                </button>
+            </div>
+            </div>
+        </div>
+
+        <!-- Wishlist Prompt -->
+        <div class="wishlist-prompt">
+            <div class="wishlist-images">
+            <div class="image-placeholder"></div>
+            <div class="image-placeholder"></div>
+            </div>
+            <div class="wishlist-text">
+            <p>Login to see items from your existing bag and wishlist.</p>
+            <button class="btn-login">LOGIN NOW</button>
+            </div>
+        </div>
+        </div>
+        <!-- Right Panel - Price Details -->
+        <div class="price-details-panel">
+        <div class="price-card">
+            <!-- Coupon Section -->
+            <div class="coupon-section">
+            <h3>COUPONS</h3>
+            <div class="coupon-input-group">
+                <i class="bi bi-tag"></i>
+                <input 
+                type="text" 
+                [(ngModel)]="couponCode"
+                placeholder="Apply Coupons"
+                [disabled]="isCouponApplied"
+                class="coupon-input"
+                />
+                <button 
+                class="btn-apply-coupon" 
+                (click)="applyCoupon()"
+                *ngIf="!isCouponApplied">
+                APPLY
+                </button>
+                <button 
+                class="btn-remove-coupon" 
+                (click)="removeCoupon()"
+                *ngIf="isCouponApplied">
+                REMOVE
+                </button>
+            </div>
+            <p class="login-offer">
+                <span class="login-link">Login</span> to get upto ₹300 OFF on first order
+            </p>
+            </div>
+
+            <!-- Donation Section -->
+            <div class="donation-section">
+            <h3>SUPPORT TRANSFORMATIVE SOCIAL WORK IN INDIA</h3>
+            <div class="donation-checkbox">
+                <input type="checkbox" id="donate" />
+                <label for="donate">Donate and make a difference</label>
+            </div>
+            <div class="donation-amounts">
+                <button class="amount-btn">₹10</button>
+                <button class="amount-btn">₹20</button>
+                <button class="amount-btn">₹50</button>
+                <button class="amount-btn">₹100</button>
+            </div>
+            <a href="#" class="know-more">Know More</a>
+            </div>
+
+            <!-- Price Breakdown -->
+            <div class="price-breakdown">
+            <h3>PRICE DETAILS ({{ cartItems.length }} Item{{ cartItems.length > 1 ? 's' : '' }})</h3>
+            
+            <div class="price-row">
+                <span>Total MRP</span>
+                <span>₹{{ totalMRP }}</span>
+            </div>
+            
+            <div class="price-row discount-row">
+                <span>Discount on MRP</span>
+                <span class="discount-value">- ₹{{ discountOnMRP }}</span>
+            </div>
+            
+            <div class="price-row" *ngIf="couponDiscount > 0">
+                <span>Coupon Discount</span>
+                <span class="discount-value">- ₹{{ couponDiscount }}</span>
+            </div>
+            
+            <div class="price-row">
+                <span>Platform Fee</span>
+                <span>₹{{ platformFee }}</span>
+            </div>
+            
+            <div class="price-row">
+                <span>Shipping Charges</span>
+                <span [class.free]="shippingCharges === 0">
+                {{ shippingCharges === 0 ? 'FREE' : '₹' + shippingCharges }}
+                </span>
+            </div>
+
+            <div class="price-row total-row">
+                <span>Total Amount</span>
+                <span>₹{{ totalAmount }}</span>
+            </div>
+
+            <div class="savings-badge" *ngIf="getSavingsPercentage() > 0">
+                <i class="bi bi-star-fill"></i>
+                You are saving ₹{{ discountOnMRP + couponDiscount }} ({{ getSavingsPercentage() }}%) on this order
+            </div>
+            </div>
+
+            <!-- Place Order Button -->
+            <button class="btn-place-order" (click)="placeOrder()">
+            PLACE ORDER
+            </button>
+        </div>
+        </div>
+    </ng-container>
+
+    <!-- ADDRESS STEP -->
+    <ng-container *ngIf="currentStep === 'address'">
+        <!-- Your address selection UI -->
+        <app-address (continue)="proceedToPayment()"></app-address>
+    </ng-container>
+
+    <!-- PAYMENT STEP -->
+    <ng-container *ngIf="currentStep === 'payment'">
+         <app-payment></app-payment>
+    </ng-container>
+
+  </div>
+
+  <!-- Empty Cart State -->
+  <div class="empty-cart" *ngIf="cartItems.length === 0">
+    <div class="empty-cart-icon">
+      <i class="bi bi-bag-x"></i>
+    </div>
+    <h2>Your bag is empty!</h2>
+    <p>Add items to get started</p>
+    <button class="btn-homeCard" (click)="continueShopping()">
+      CONTINUE SHOPPING
+    </button>
+  </div>
+
+  <!-- Similar Products Section -->
+  <div class="similar-products-section" *ngIf="similarProducts.length > 0">
+    <div *ngIf="currentStep !== 'address' && currentStep !== 'payment'">
+        <h2>You may also like</h2>
+        <div class="similar-products-grid">
+        <div class="product-card" *ngFor="let product of similarProducts">
+            <div class="product-image" (click)="viewProductDetails(product)">
+            <img [src]="product.imageUrl" [alt]="product.name" />
+            <div class="product-overlay">
+                <button class="btn-add-to-bag" (click)="addSimilarToCart(product); $event.stopPropagation()">
+                <i class="bi bi-bag"></i> ADD TO BAG
+                </button>
+            </div>
+            </div>
+            <div class="product-info">
+            <h4>{{ product.brand || 'Brand' }}</h4>
+            <p>{{ product.name }}</p>
+            <div class="product-price">
+                <span class="current">₹{{ product.price }}</span>
+                <span class="original" *ngIf="product.originalPrice">₹{{ product.originalPrice }}</span>
+                <span class="discount" *ngIf="product.originalPrice">
+                ({{ ((product.originalPrice - product.price) / product.originalPrice * 100).toFixed(0) }}% OFF)
+                </span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

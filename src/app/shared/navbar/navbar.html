@@ -1,0 +1,167 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="images/LOGO.png" alt="Logo" height="40">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Jewellery Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="jewelleryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Jewellery
+          </a>
+       <ul class="dropdown-menu" aria-labelledby="jewelleryDropdown">
+        <li *ngFor="let category of categories">
+          <a class="dropdown-item" [routerLink]="['/products', category.id]" [queryParams]="{ name: category.name }">
+            {{ category.name }}
+          </a>
+        </li>
+       </ul>
+
+        </li>
+        <!-- Fashion Dropdown (with submenus) -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="fashionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fashion
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="fashionDropdown" style="min-width: 220px;">
+            <!-- Men Submenu -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#">Men</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Shirts</a></li>
+                <li><a class="dropdown-item" href="#">Trousers</a></li>
+                <li><a class="dropdown-item" href="#">Jackets</a></li>
+                <li><a class="dropdown-item" href="#">Accessories</a></li>
+              </ul>
+            </li>
+            <!-- Women Submenu -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#">Women</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Dresses</a></li>
+                <li><a class="dropdown-item" href="#">Tops</a></li>
+                <li><a class="dropdown-item" href="#">Skirts</a></li>
+                <li><a class="dropdown-item" href="#">Accessories</a></li>
+              </ul>
+            </li>
+            <!-- Kids Submenu -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-item dropdown-toggle" href="#">Kids</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Boys</a></li>
+                <li><a class="dropdown-item" href="#">Girls</a></li>
+                <li><a class="dropdown-item" href="#">Infants</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- Search Bar -->
+      <form class="d-flex me-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search for products, brands and more" aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+      </form>
+
+      <!-- Icons -->
+      <div class="d-flex align-items-center">
+        <!-- Profile with Dropdown -->
+        <div class="profile-dropdown-wrapper"
+        (mouseenter)="showProfileDropdown()"
+        (mouseleave)="hideProfileDropdown()">
+
+      <!-- Profile Icon Trigger -->
+      <a href="javascript:void(0)" class="nav-link px-2 profile-trigger" title="Profile">
+        <i class="fa-regular fa-user"></i>
+      </a>
+
+      <!-- Profile Dropdown Menu -->
+      <div class="profile-dropdown" [class.show]="isProfileDropdownVisible">
+        <div class="dropdown-content">
+
+          <!-- Header Section -->
+          <div class="dropdown-header">
+            <!-- Not Logged In View -->
+            <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+              <button class="btn-auth" (click)="navigateToAuth()">
+                LOGIN / SIGNUP
+              </button>
+            </ng-container>
+
+            <!-- Logged In View -->
+            <ng-template #loggedInBlock>
+              <h6 class="welcome-title">Welcome, {{ getFirstName() }}!</h6>
+               <button class="btn-auth" (click)="navigateToProfile()">
+                VIEW PROFILE 
+              </button>
+            </ng-template>
+          </div>
+
+          <hr class="dropdown-divider" />
+
+          <!-- Profile Menu Items -->
+          <div class="dropdown-menu-items">
+            <ng-container *ngFor="let item of profileMenuItems; trackBy: trackByRoute">
+              <a href="javascript:void(0)"
+                class="dropdown-item"
+                (click)="navigateToMenuItem(item.route)">
+                <i class="fa-solid {{ item.icon }} item-icon"></i>
+                <span>{{ item.label }}</span>
+              </a>
+            </ng-container>
+          </div>
+
+          <hr class="dropdown-divider" />
+
+          <!-- Account Menu Items -->
+          <div class="dropdown-menu-items">
+            <ng-container *ngFor="let item of accountMenuItems; trackBy: trackByRoute">
+              <a href="javascript:void(0)"
+                class="dropdown-item"
+                (click)="navigateToMenuItem(item.route)">
+                <i class="fa-solid {{ item.icon }} item-icon"></i>
+                <span>{{ item.label }}</span>
+              </a>
+            </ng-container>
+          </div>
+
+          <!-- Logout Button -->
+          <div *ngIf="isLoggedIn" class="logout-section">
+            <hr class="dropdown-divider" />
+            <button class="btn-logout" (click)="logout()">
+              <i class="fa-solid fa-sign-out item-icon"></i>
+              Logout
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+        <!-- Profile Finish Here -->
+        <!-- Wishlist -->
+        <a href="#" class="nav-link position-relative" title="Wishlist">
+          @if (wishlistCount > 0) {
+            <i class="fa-solid fa-heart text-danger" style="font-size: 1.3rem;"></i>
+            <span 
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ wishlistCount }}
+            </span>
+          } @else {
+            <i class="fa-regular fa-heart" style="font-size: 1.3rem;"></i>
+          }
+        </a>
+
+        <!-- Add to Cart -->
+        <a class="nav-link position-relative" [routerLink]="['/checkout/cart']" title="Cart">
+          <i class="fa fa-shopping-bag"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ cartCount }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

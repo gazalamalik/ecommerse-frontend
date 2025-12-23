@@ -1,0 +1,69 @@
+<div class="container mt-4">
+
+  <!-- Hero Carousel -->
+  <div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner rounded shadow">
+      <div *ngFor="let banner of banners; let i = index" class="carousel-item" [class.active]="i === 0">
+        <img [src]="banner.imageUrl" class="d-block w-100" [alt]="banner.altText">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+  <!-- Categories Section -->
+  <h2 class="mb-4 text-center">Shop by Category</h2>
+ <div class="row g-4 mb-5">
+  <div class="col-6 col-md-4 col-lg-3" *ngFor="let category of categories">
+    <div class="card category-card shadow-sm">
+      <img [src]="category.imageUrl" class="card-img-top" [alt]="category.altText">
+      <div class="card-body">
+       <!--<h5 class="card-title">{{ category.name }}</h5>-->
+        <button class="btn-homeCard" (click)="navigateToProducts(category.id)">
+          {{ category.name }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Featured Designs -->
+  <h2 class="mb-4 text-center">Featured Designs</h2>
+  <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+   <div class="carousel-inner">
+    <div *ngFor="let group of featuredProductGroups; let i = index" class="carousel-item" [class.active]="i === 0">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of group">
+          <div class="card h-100 shadow-sm mx-2 featured-card">
+            <img [src]="product.img" class="card-img-top" [alt]="product.name">
+            <div class="card-body p-2">
+              <h6 class="card-title mb-1">{{ product.name }}</h6>
+              <p class="card-text small mb-2">{{ product.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold small">₹{{ product.price }}</span>
+
+                <button class="btn btn-sm btn-outline-primary" (click)="goToSummary(product)">View Details</button>
+
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Carousel Controls OUTSIDE the inner content -->
+  <button class="carousel-control-prev position-absolute top-50 start-0 translate-middle-y" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next position-absolute top-50 end-0 translate-middle-y" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
+
+</div>
